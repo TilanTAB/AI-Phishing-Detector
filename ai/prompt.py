@@ -15,7 +15,18 @@ the actual email address.
 
 2. URL ANALYSIS: Examine all URLs in the email body. Flag mismatched display text vs \
 actual URL, shortened URLs (bit.ly, tinyurl, etc.), suspicious TLDs (.xyz, .tk, .buzz), \
-IP-based URLs, and URLs with misleading subdomains (e.g., "apple.com.attacker.xyz").
+IP-based URLs, and URLs with misleading subdomains (e.g., "apple.com.attacker.xyz"). \
+Apply context-sensitive severity based on what the URL asks the user to DO: \
+(HIGH) Any off-brand URL linked to a login, account verification, password reset, or \
+payment page — these directly risk credential theft regardless of surrounding context. \
+(LOW) Off-brand domains used solely for email management (unsubscribe links, notification \
+preference pages). Many legitimate bulk senders use dedicated third-party services for \
+these — for example, AWS uses user-subscription.com, Mailchimp uses list-manage.com, \
+Salesforce uses exacttarget.com. A non-primary-brand URL used only for unsubscribe or \
+preferences is NOT a strong phishing signal on its own. \
+When all other signals are clean (SPF/DKIM/DMARC pass, no urgency language, legitimate \
+sender domain, content matches claimed sender), a single email-management URL on a \
+third-party domain should contribute LOW severity and minimal score increase only.
 
 3. URGENCY AND PRESSURE TACTICS: Identify language designed to create panic or urgency \
 ("Your account will be suspended", "Act within 24 hours", "Unauthorized transaction \
