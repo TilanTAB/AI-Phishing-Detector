@@ -1,0 +1,18 @@
+{
+  "id": "msg001",
+  "payload": {
+    "headers": [
+      {"name": "From", "value": "GitHub <noreply@github.com>"},
+      {"name": "Reply-To", "value": "noreply@github.com"},
+      {"name": "To", "value": "user@gmail.com"},
+      {"name": "Date", "value": "Sat, 29 Mar 2026 10:00:00 +0000"},
+      {"name": "Subject", "value": "Your pull request was merged"},
+      {"name": "Authentication-Results", "value": "mx.google.com; spf=pass smtp.mailfrom=github.com; dkim=pass header.i=@github.com; dmarc=pass"}
+    ],
+    "mimeType": "text/plain",
+    "body": {
+      "data": "SGksDQoNCllvdXIgcHVsbCByZXF1ZXN0ICMxMjMgd2FzIG1lcmdlZCBpbnRvIG1haW4uDQoNClZpZXcgaXQgYXQgaHR0cHM6Ly9naXRodWIuY29tL3VzZXIvcmVwby9wdWxsLzEyMw0KDQpUaGFua3MsDQpUaGUgR2l0SHViIFRlYW0="
+    },
+    "parts": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "msg003",
+  "payload": {
+    "headers": [
+      {"name": "From", "value": "HR Department <hr@company-corp.net>"},
+      {"name": "Reply-To", "value": "hr@company-corp.net"},
+      {"name": "To", "value": "user@gmail.com"},
+      {"name": "Date", "value": "Sat, 29 Mar 2026 08:00:00 +0000"},
+      {"name": "Subject", "value": "Important: Update your employee benefits information"},
+      {"name": "Authentication-Results", "value": "mx.google.com; spf=unknown; dkim=unknown; dmarc=unknown"}
+    ],
+    "mimeType": "text/plain",
+    "body": {
+      "data": "RGVhciBFbXBsb3llZSwNCg0KUGxlYXNlIHVwZGF0ZSB5b3VyIGJlbmVmaXRzIGluZm9ybWF0aW9uIGJlZm9yZSB0aGUgZW5kIG9mIHRoZSBtb250aC4NCg0KQ2xpY2sgaGVyZTogaHR0cHM6Ly9iaXQubHkvM3h5ejEyMw0KDQpZb3UgbmVlZCB0byBzdWJtaXQgeW91ciBTU04gYW5kIGJhbmsgYWNjb3VudCBkZXRhaWxzIHRvIHVwZGF0ZSBkaXJlY3QgZGVwb3NpdC4NCg0KSFIgRGVwYXJ0bWVudA=="
+    },
+    "parts": []
+  }
+}
