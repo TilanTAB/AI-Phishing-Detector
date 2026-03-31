@@ -50,33 +50,11 @@ New Email Arrives → Gmail → Cloud Pub/Sub Push Notification
 
 ## Screenshots
 
-### Gmail Add-on Sidebar
+### Gmail Add-on — Analysis Results
 
-| Home Card | Analysis Results |
-|-----------|-----------------|
-| ![Home Card](docs/screenshots/addon_home_card.png) | ![Results Card](docs/screenshots/addon_results_card.png) |
+![Phishing Checker Results Card](docs/screenshots/phishing.png)
 
-### Gmail Labels Applied
-
-![Gmail Labels](docs/screenshots/gmail_labels.png)
-
-### Apps Script — Script Properties Setup
-
-![Script Properties](docs/screenshots/script_properties.png)
-
-### Apps Script — Project Settings
-
-![Project Settings](docs/screenshots/apps_script_project_settings.png)
-
-### GCP Console — Pub/Sub Topic
-
-![Pub/Sub Topic](docs/screenshots/gcp_pubsub_topic.png)
-
-### GCP Console — OAuth Credentials
-
-![OAuth Credentials](docs/screenshots/gcp_oauth_credentials.png)
-
-> **Note:** To add your own screenshots, take them and save to `docs/screenshots/` using the filenames above.
+> The sidebar shows a **SAFE** verdict (Score 25/100, Confidence 92%) with assessment details and flagged red flags for a CodePen newsletter email. Results include SPF/DKIM/DMARC authentication status, URL analysis, and a plain-English explanation.
 
 ---
 
