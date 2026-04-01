@@ -227,6 +227,25 @@ function buildResultsCard(result, messageId) {
  * @param {string} [messageId]
  * @returns {Card}
  */
+function buildAccessDeniedCard() {
+  return CardService.newCardBuilder()
+    .setHeader(CardService.newCardHeader()
+      .setTitle('🔒 Access Restricted')
+      .setSubtitle('Phishing Checker'))
+    .addSection(
+      CardService.newCardSection()
+        .addWidget(
+          CardService.newTextParagraph()
+            .setText(
+              'Your account (<b>' + Session.getActiveUser().getEmail() + '</b>) ' +
+              'is not authorised to use this add-on.\n\n' +
+              'Contact the owner to request access.'
+            )
+        )
+    )
+    .build();
+}
+
 function buildErrorCard(errorMessage, messageId) {
   var card = CardService.newCardBuilder()
     .setHeader(CardService.newCardHeader()

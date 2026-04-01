@@ -18,6 +18,8 @@
  * @returns {Card|Card[]}
  */
 function onGmailMessage(e) {
+  if (!isAllowedUser()) return buildAccessDeniedCard();
+
   try {
     var messageId = e && e.gmail && e.gmail.messageId;
     if (!messageId) {
@@ -41,6 +43,8 @@ function onGmailMessage(e) {
  * @returns {Card}
  */
 function buildAddOn(e) {
+  if (!isAllowedUser()) return buildAccessDeniedCard();
+
   var card = CardService.newCardBuilder()
     .setHeader(CardService.newCardHeader()
       .setTitle('🔍 Phishing Checker')
@@ -83,6 +87,12 @@ function buildAddOn(e) {
  * @returns {ActionResponse}
  */
 function analyzeEmailAction(e) {
+  if (!isAllowedUser()) {
+    return CardService.newActionResponseBuilder()
+      .setNotification(CardService.newNotification().setText('Access denied.'))
+      .build();
+  }
+
   var messageId = e.parameters && e.parameters.messageId;
 
   if (!messageId) {
@@ -130,6 +140,12 @@ function analyzeEmailAction(e) {
  * @returns {ActionResponse}
  */
 function applyLabelAction(e) {
+  if (!isAllowedUser()) {
+    return CardService.newActionResponseBuilder()
+      .setNotification(CardService.newNotification().setText('Access denied.'))
+      .build();
+  }
+
   var messageId = e.parameters && e.parameters.messageId;
   var verdict   = e.parameters && e.parameters.verdict;
 

@@ -56,6 +56,24 @@ function getProvider() {
 }
 
 /**
+ * Returns true if the current user is permitted to use the add-on.
+ *
+ * Set Script Property ALLOWED_USERS to a comma-separated list of Gmail
+ * addresses to restrict access (e.g. "alice@gmail.com,bob@gmail.com").
+ * Leave the property unset or empty to allow all users (default).
+ *
+ * @returns {boolean}
+ */
+function isAllowedUser() {
+  var allowedList = getProp('ALLOWED_USERS');
+  if (!allowedList || allowedList.trim() === '') return true;
+  var currentUser = Session.getActiveUser().getEmail().toLowerCase().trim();
+  return allowedList.split(',').some(function(email) {
+    return email.toLowerCase().trim() === currentUser;
+  });
+}
+
+/**
  * Returns true if TEST_MODE=true is set in Script Properties.
  * In test mode, AI providers return a hardcoded result without making real API calls.
  * Useful for Card.gs UI development without burning API credits.
