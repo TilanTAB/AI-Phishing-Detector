@@ -58,19 +58,75 @@ function getProvider() {
 /**
  * Returns true if the current user is permitted to use the add-on.
  *
- * Set Script Property ALLOWED_USERS to a comma-separated list of Gmail
- * addresses to restrict access (e.g. "alice@gmail.com,bob@gmail.com").
- * Leave the property unset or empty to allow all users (default).
+ * Access control priority:
+ *   1. ALLOWED_USERS_SHEET_ID → reads column A from the first sheet of
+ *      that Google Sheet (one email per row). Cached for 5 min.
+ *   2. ALLOWED_USERS → comma-separated emails in Script Properties.
+ *   3. Neither set → allow all users (default).
  *
  * @returns {boolean}
  */
 function isAllowedUser() {
-  var allowedList = getProp('ALLOWED_USERS');
-  if (!allowedList || allowedList.trim() === '') return true;
   var currentUser = Session.getActiveUser().getEmail().toLowerCase().trim();
-  return allowedList.split(',').some(function(email) {
-    return email.toLowerCase().trim() === currentUser;
-  });
+  if (!currentUser) return true; // Can't determine user (e.g. time-based trigger)
+
+  // --- Priority 1: Google Sheet ---
+  var sheetId = getProp('ALLOWED_USERS_SHEET_ID');
+  if (sheetId && sheetId.trim() !== '') {
+    return _isUserInSheet(currentUser, sheetId.trim());
+  }
+
+  // --- Priority 2: Comma-separated list ---
+  var allowedList = getProp('ALLOWED_USERS');
+  if (allowedList && allowedList.trim() !== '') {
+    return allowedList.split(',').some(function(email) {
+      return email.toLowerCase().trim() === currentUser;
+    });
+  }
+
+  // --- Neither configured: allow all ---
+  return true;
+}
+
+/**
+ * Checks if a user email exists in column A of the given Google Sheet.
+ * Results are cached for 5 minutes to avoid hitting Sheets API on every
+ * card action (Apps Script's 30s limit is tight).
+ *
+ * @param {string} userEmail - Lowercase, trimmed
+ * @param {string} sheetId  - Google Sheets file ID
+ * @returns {boolean}
+ */
+function _isUserInSheet(userEmail, sheetId) {
+  var CACHE_KEY = 'allowed_users_list';
+  var CACHE_TTL = 300; // 5 minutes
+
+  var cache = CacheService.getScriptCache();
+  var cached = cache.get(CACHE_KEY);
+
+  if (cached) {
+    var emails = JSON.parse(cached);
+    return emails.indexOf(userEmail) !== -1;
+  }
+
+  // Cache miss — read from Sheet
+  try {
+    var sheet = SpreadsheetApp.openById(sheetId).getSheets()[0];
+    var lastRow = sheet.getLastRow();
+    if (lastRow < 1) return false;
+
+    var values = sheet.getRange(1, 1, lastRow, 1).getValues();
+    var emails = values
+      .map(function(row) { return String(row[0]).toLowerCase().trim(); })
+      .filter(function(e) { return e && e.indexOf('@') !== -1; });
+
+    cache.put(CACHE_KEY, JSON.stringify(emails), CACHE_TTL);
+    return emails.indexOf(userEmail) !== -1;
+  } catch (err) {
+    console.error('Failed to read allowed users sheet: ' + err.message);
+    // Fail-closed: deny access if we can't read the sheet
+    return false;
+  }
 }
 
 /**
