@@ -3,6 +3,22 @@
   "dependencies": {},
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8",
+  "urlFetchWhitelist": [
+    "https://generativelanguage.googleapis.com/",
+    "https://us-central1-aiplatform.googleapis.com/",
+    "https://us-east1-aiplatform.googleapis.com/",
+    "https://us-west1-aiplatform.googleapis.com/",
+    "https://europe-west1-aiplatform.googleapis.com/",
+    "https://asia-southeast1-aiplatform.googleapis.com/",
+    "https://bedrock-runtime.us-east-1.amazonaws.com/",
+    "https://bedrock-runtime.us-west-2.amazonaws.com/",
+    "https://bedrock-runtime.eu-west-1.amazonaws.com/",
+    "https://bedrock-runtime.ap-southeast-1.amazonaws.com/",
+    "https://sts.us-east-1.amazonaws.com/",
+    "https://sts.us-west-2.amazonaws.com/",
+    "https://sts.eu-west-1.amazonaws.com/",
+    "https://sts.ap-southeast-1.amazonaws.com/"
+  ],
   "oauthScopes": [
     "https://www.googleapis.com/auth/gmail.addons.execute",
     "https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
