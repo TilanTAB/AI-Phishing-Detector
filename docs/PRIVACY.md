@@ -2,6 +2,10 @@
 
 _Last updated: April 2, 2026_
 
+## Access Restriction
+
+This add-on is **private and restricted to authorized users only**. Access is controlled via an allowlist. If your Google account is not on the allowlist, the add-on will display an "Access Restricted" message and will not process any email data. To request access, contact the developer at the support link below.
+
 ## What This Add-on Does
 
 AI Phishing Detector is a Gmail add-on that analyzes emails you explicitly open and trigger for analysis. It checks for phishing indicators such as suspicious URLs, sender spoofing, urgency tactics, and grammar anomalies.

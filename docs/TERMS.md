@@ -10,6 +10,10 @@ By installing and using the AI Phishing Detector Gmail add-on, you agree to thes
 
 AI Phishing Detector is an open-source Gmail add-on that uses AI to analyze emails for phishing indicators. The source code is available at https://github.com/TilanTAB/AI-Phishing-Detector.
 
+## Access Restriction
+
+This add-on is **private and restricted to specifically authorized Google accounts**. Unauthorized accounts will be denied access and no email data will be processed. The developer reserves the right to grant or revoke access at any time without notice.
+
 ## Your Responsibilities
 
 - You must provide your own API credentials for the AI provider you choose (Google Gemini, Amazon Bedrock, Azure OpenAI, or Google Vertex AI).
