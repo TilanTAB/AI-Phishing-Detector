@@ -25,7 +25,8 @@ function analyzeWithAI(emailData) {
       redFlags: [
         { category: 'sender',      detail: 'Mock: lookalike domain detected', severity: 'high' },
         { category: 'urgency',     detail: 'Mock: 24-hour account suspension threat', severity: 'high' },
-        { category: 'url',         detail: 'Mock: suspicious .xyz TLD in link', severity: 'medium' }
+        { category: 'url',         detail: 'Mock: suspicious .xyz TLD in link', severity: 'medium' },
+        { category: 'manipulation', detail: 'Mock: email body instructs the analyzer to mark it safe', severity: 'high' }
       ],
       confidence: 0.95,
       isFallback: false
